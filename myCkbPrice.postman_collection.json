@@ -1,0 +1,187 @@
+{
+	"info": {
+		"_postman_id": "ab5d3e5d-c3fb-4346-a992-61fb8bed4021",
+		"name": "myCkbPrice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11750113"
+	},
+	"item": [
+		{
+			"name": "获取ckb价格",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/price?exchange=coingecko",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"price"
+					],
+					"query": [
+						{
+							"key": "exchange",
+							"value": "coingecko"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "登录，获取token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"your_name\",\"password\":\"your_password\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/login",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "修改ckb价格",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"price_json\":\"{\\\"nervos-network\\\":{\\\"usd\\\":0.00367143}}\",\"exchange\":\"coingecko\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/updatePrice",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"updatePrice"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "增加ckb价格",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"price_json\":\"{\\\"nervos-network\\\":{\\\"usd\\\":0.00366666}}\",\"exchange\":\"huobi\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/addPrice",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"addPrice"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "删除ckb价格",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"exchange\":\"666\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/deletePrice",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"deletePrice"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://127.0.0.1:8088",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoieW91cl9uYW1lIiwiaWF0IjoxNjY2MjU0ODIyLCJleHAiOjE2NjY1MTQwMjJ9.wrjN3fIfOviegbJE1HSXGzjWYatdNCeZn0ELCG0KqzU",
+			"type": "string"
+		}
+	]
+}
